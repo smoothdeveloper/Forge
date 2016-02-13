@@ -2,17 +2,32 @@
 open System
 open System.IO
 open Fake
+open FSharp.Data
 
 let (^) = (<|)
 
 let exeLocation = System.Reflection.Assembly.GetEntryAssembly().Location |> Path.GetDirectoryName
 let templatesLocation = exeLocation </> ".." </> "templates"
+let filesLocation = templatesLocation </> ".files"
+let templateFile = templatesLocation </> "templates.json"
+
 let directory = System.Environment.CurrentDirectory
 let packagesDirectory = directory </> "packages"
 
 let paketLocation = exeLocation </> "Tools" </> "Paket"
 let fakeLocation = exeLocation </> "Tools" </> "FAKE"
 let fakeToolLocation = fakeLocation </> "tools"
+
+type Definitions = JsonProvider<""" {"Templates": [ { "name": "Console Application", "value": "console" }], "Files": [{ "name": "F# Module", "value": "fs", "extension": "fs" }]}""">
+
+let relative (path1 : string) (path2 : string) =
+    let p1 = Uri(path1)
+    let p2 = Uri(path2)
+    Uri.UnescapeDataString(
+        p2.MakeRelativeUri(p1)
+          .ToString()
+          .Replace('/', Path.DirectorySeparatorChar)
+    )
 
 let prompt text =
     printfn text

@@ -52,6 +52,7 @@ with
 
 type FileArgs =
     |[<CustomCommandLine("add")>] Add of string
+    | Template of string
     |[<CustomCommandLine("remove")>] Remove of string
     |[<CustomCommandLine("list")>] List
     |[<CustomCommandLine("order")>] Order of string * string
@@ -60,6 +61,7 @@ with
         member this.Usage =
             match this with
             | Add _ -> "Adds a file to the current folder and project"
+            | Template _ -> ""
             | Remove _ -> "Removes the file from disk and the project"
             | List  -> "List all files"
             | Order _ -> "Moves file1 immediately before file2 in the project"
@@ -112,8 +114,9 @@ let file (results : ParseResults<_>) =
     let remove = results.TryGetResult <@ FileArgs.Remove @>
     let list = results.Contains <@ FileArgs.List @>
     let order = results.TryGetResult <@ FileArgs.Order @>
+    let template = defaultArg (results.TryGetResult <@ FileArgs.Template @>) ""
     match add, remove, list, order with
-    | Some fn, _, _, _ -> Files.Add fn
+    | Some fn, _, _, _ -> Files.Add fn template
     | _, Some fn, _, _ -> Files.Remove fn
     | _, _, true, _ -> Files.List ()
     | _, _, _, Some (f1,f2) -> Files.Order f1 f2
@@ -125,9 +128,9 @@ let reference (results : ParseResults<_>) =
     let remove = results.TryGetResult <@ ReferenceArgs.Remove @>
     let list = results.Contains <@ ReferenceArgs.List @>
     match add, remove, list with
-    | Some fn, _, _ -> Files.Add fn
-    | _, Some fn, _ -> Files.Remove fn
-    | _, _, true -> Files.List ()
+    | Some fn, _, _ -> References.Add fn
+    | _, Some fn, _ -> References.Remove fn
+    | _, _, true -> References.List ()
     | None, None, false -> ()
     0
 
@@ -139,5 +142,3 @@ let update (results : ParseResults<_>) =
     | _, true -> Fake.Update ()
     | false, false -> ()
     0
-
-

@@ -18,14 +18,7 @@ let sed (find:string) replace folder =
                     let contents = File.ReadAllText(x).Replace(find, r)
                     File.WriteAllText(x, contents))
 
-let relative (path1 : string) (path2 : string) =
-    let p1 = Uri(path1)
-    let p2 = Uri(path2)
-    Uri.UnescapeDataString(
-        p2.MakeRelativeUri(p1)
-          .ToString()
-          .Replace('/', Path.DirectorySeparatorChar)
-    )
+ 
 
 let getProjects() =
     DirectoryInfo(directory) |> Fake.FileSystemHelper.filesInDirMatching "*.fsproj"
