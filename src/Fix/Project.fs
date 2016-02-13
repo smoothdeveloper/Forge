@@ -40,7 +40,7 @@ let execOnProject fn =
     | [| project |] -> project.Name |> alter fn
     | [||] -> printfn "No project found in this directory."
     | projects ->
-        let project = projects |> Seq.map (fun x -> x.Name) |> promptSelect "Choose a project:"
+        let project = projects |> Array.map (fun x -> x.Name) |> promptSelect "Choose a project:"
         project |> alter fn
 
 
@@ -52,11 +52,11 @@ let New projectName projectDir templateName paket fake =
 
     let projectName' = if String.IsNullOrWhiteSpace projectName then prompt "Enter project name:" else projectName
     let projectDir' = if String.IsNullOrWhiteSpace projectDir then prompt "Enter project directory (relative to working directory):" else projectDir
-    let templateName' = if String.IsNullOrWhiteSpace templateName then templates |> promptSelect "Choose a template:" else templateName
+    let templateName' = if String.IsNullOrWhiteSpace templateName then templates |> promptSelect2 "Choose a template:" else templateName
     let projectFolder = directory </> projectDir' </> projectName'
     let templateDir = templatesLocation </> templateName'
 
-    if templates |> Seq.contains templateName' then
+    if templates |> Seq.exists (fun (_,v) -> v = templateName')  then
         printfn "Generating project..."
 
         Fake.FileHelper.CopyDir projectFolder templateDir (fun _ -> true)

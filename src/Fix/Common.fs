@@ -21,7 +21,14 @@ let prompt text =
 
 let promptSelect text list =
     printfn text
-    list |> Seq.iter (printfn " - %s")
+    list |> Array.iter (printfn " - %s")
+    printfn ""
+    Console.Write("> ")
+    Console.ReadLine()
+
+let promptSelect2 text list =
+    printfn text
+    list |> Array.iter (fun (n, v) -> printfn " - %s (%s)" n v)
     printfn ""
     Console.Write("> ")
     Console.ReadLine()

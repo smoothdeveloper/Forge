@@ -95,7 +95,7 @@ Target "AssemblyInfo" (fun _ ->
 // Clean build results
 
 Target "Clean" (fun _ ->
-    CleanDirs ["temp"; ]
+    CleanDirs ["temp/bin"; ]
 )
 
 Target "CleanDocs" (fun _ ->
