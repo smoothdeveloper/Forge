@@ -70,8 +70,12 @@
     <Compile Include="ReferenceTests.fs" />
     <Compile Include="ProjectSystemTest.fs" />
     <Compile Include="ProjectManagerTests.fs" />
+    <Compile Include="IntegrationTests.fs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FakeLib">
+      <HintPath>..\..\packages\FAKE\tools\FakeLib.dll</HintPath>
+    </Reference>
     <Reference Include="FSharp.Core, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
@@ -86,6 +90,42 @@
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.5'">
+      <ItemGroup>
+        <Reference Include="FSharp.Management.PowerShell.ExternalRuntime">
+          <HintPath>..\..\packages\FSharp.Management\lib\net40\FSharp.Management.PowerShell.ExternalRuntime.exe</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="FSharp.Management.PowerShell">
+          <HintPath>..\..\packages\FSharp.Management\lib\net40\FSharp.Management.PowerShell.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="FSharp.Management.WMI.DesignTime">
+          <HintPath>..\..\packages\FSharp.Management\lib\net40\FSharp.Management.WMI.DesignTime.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="FSharp.Management.WMI">
+          <HintPath>..\..\packages\FSharp.Management\lib\net40\FSharp.Management.WMI.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="FSharp.Management">
+          <HintPath>..\..\packages\FSharp.Management\lib\net40\FSharp.Management.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="System.Management.Automation">
+          <HintPath>..\..\packages\FSharp.Management\lib\net40\System.Management.Automation.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.5'">
       <ItemGroup>
