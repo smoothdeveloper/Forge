@@ -4,7 +4,7 @@ open System.IO
 open Forge.Prelude
 open NUnit.Framework
 
-let integrationTestCasesFolder = DirectoryInfo(__SOURCE_DIRECTORY__ </> ".." </> "integration.test.cases")
+let integrationTestCasesFolder = DirectoryInfo(__SOURCE_DIRECTORY__ </> "use.cases")
 
 type CompareResult =
 | SameFolder of (string * CompareResultItem) seq
@@ -16,7 +16,6 @@ and CompareResultItem =
 | FileContentsDifference
 | LeftSubFolderAbsent
 | RightSubFolderAbsent
-
 
 let getRelativePath (dir: DirectoryInfo) (fsInfo: FileSystemInfo) = fsInfo.FullName.Substring(dir.FullName.Length)
 

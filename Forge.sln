@@ -51,6 +51,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Forge.Core", "src\Forge.Cor
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Forge", "src\Forge\Forge.fsproj", "{147B0E3C-C669-4666-8FBC-7F77CAC2FF36}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Forge.Tests.Integration", "tests\Forge.Tests.Integration\Forge.Tests.Integration.fsproj", "{662E8102-634F-472D-A566-CA6368C58FCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{147B0E3C-C669-4666-8FBC-7F77CAC2FF36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{147B0E3C-C669-4666-8FBC-7F77CAC2FF36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{147B0E3C-C669-4666-8FBC-7F77CAC2FF36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662E8102-634F-472D-A566-CA6368C58FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662E8102-634F-472D-A566-CA6368C58FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662E8102-634F-472D-A566-CA6368C58FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662E8102-634F-472D-A566-CA6368C58FCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +83,6 @@ Global
 		{83F16175-43B1-4C90-A1EE-8E351C33435D} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
 		{8E6D5255-776D-4B61-85F9-73C37AA1FB9A} = {A6A6AF7D-D6E3-442D-9B1E-58CC91879BE1}
 		{FBAF8C7B-4EDA-493A-A7FE-4DB25D15736F} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
+		{662E8102-634F-472D-A566-CA6368C58FCA} = {ED8079DD-2B06-4030-9F0F-DC548F98E1C4}
 	EndGlobalSection
 EndGlobal
